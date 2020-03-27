@@ -1,23 +1,16 @@
 
 import React, { useState, useEffect, useContext } from 'react';
-import { View, FlatList,ActivityIndicator } from 'react-native'
+import { View, FlatList, ActivityIndicator } from 'react-native'
 import {
-    Avatar,
-    Button,
-    Card,
-    Title,
-    Paragraph,
-    List,
     Headline,
 } from 'react-native-paper';
-import HTMLRender from 'react-native-render-html'
-import moment from 'moment'
-
-const Home = () => {
+import ContentPlaceholder from '../components/ContentPlaceholder'
+import FlatlistItem from '../components/FlatlistItem'
+const Home = ({ navigation }) => {
     const [posts, setPosts] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
     const [page, setPage] = useState(1);
-
+    const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         if (isFetching) {
             fetchLastestPost();
@@ -28,14 +21,14 @@ const Home = () => {
             fetchLastestPost();
         }
     }, [page]);
- 
+
     function onRefresh() {
         setIsFetching(true);
     }
     function handleLoadMore() {
         setPage(page => page + 1);
     }
- 
+
     const fetchLastestPost = async () => {
         const response = await fetch(
             `https://kriss.io/wp-json/wp/v2/posts?per_page=5&page=${page}`,
@@ -47,8 +40,8 @@ const Home = () => {
             setPosts([...posts, ...post]);
         }
         setIsFetching(false);
- 
- 
+        setIsLoading(false)
+
     }
 
     useEffect(() => {
@@ -67,47 +60,33 @@ const Home = () => {
             </View>
         );
     }
- 
-    return (
-        <View>
-            <Headline style={{ marginLeft: 23 }}>Lastest Post</Headline>
-            <FlatList
-                data={posts}
-                onRefresh={() => onRefresh()}
-                refreshing={isFetching}
-                onEndReached={() => handleLoadMore()}
-                onEndReachedThreshold={0.1}
-                ListFooterComponent={() => renderFooter()}
-                renderItem={({ item }) => (
-                    <Card
-                        style={{
-                            shadowOffset: { width: 5, height: 5 },
-                            width: '90%',
-                            borderRadius: 12,
-                            alignSelf: 'center',
-                            marginBottom: 10,
-                        }}>
-                        <Card.Content>
-                            <Title>{item.title.rendered}</Title>
-                            <Paragraph>Published on {moment(item.date).fromNow()}</Paragraph>
-                        </Card.Content>
-                        <Card.Cover
-                            source={{ uri: item.jetpack_featured_media_url }}
-                        />
-                        <Card.Content>
+    if (isLoading) {
+        return (
+            <View style={{ paddingLeft: 10, paddingRight: 10 }}>
+                <Headline style={{ marginLeft: 23 }}>Lastest Post</Headline>
+                <ContentPlaceholder />
+            </View>
+        )
+    } else {
+        return (
+            <View>
+                <Headline style={{ marginLeft: 23 }}>Lastest Post</Headline>
+                <FlatList
+                    data={posts}
+                    onRefresh={() => onRefresh()}
+                    refreshing={isFetching}
+                    onEndReached={() => handleLoadMore()}
+                    onEndReachedThreshold={0.1}
+                    ListFooterComponent={() => renderFooter()}
+                    renderItem={({ item }) => (
+                        <FlatlistItem item={item} navigation={navigation} />
+                    )}
+                    keyExtractor={(item, index) => index.toString()}
+                />
 
-                            <HTMLRender html={item.excerpt.rendered} />
-
-                        </Card.Content>
-
-                    </Card>
-                )}
-                keyExtractor={(item, index) => index.toString()}
-            />
-
-        </View>
-    );
-
+            </View>
+        );
+    }
 }
 
 export default Home

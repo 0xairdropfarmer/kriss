@@ -18,6 +18,7 @@
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-gesture-handler": "^1.6.1",
+    "react-native-image-placeholder": "^1.0.14",
     "react-native-paper": "^3.6.0",
     "react-native-reanimated": "^1.7.1",
     "react-native-render-html": "^4.2.0",
@@ -25,7 +26,8 @@
     "react-native-screens": "^2.4.0",
     "react-native-splash-screen": "^3.2.0",
     "react-native-vector-icons": "^6.6.0",
-    "react-native-webview": "^9.0.1"
+    "react-native-webview": "^9.0.1",
+    "rn-placeholder": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
