@@ -2,16 +2,18 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, FlatList, ActivityIndicator } from 'react-native'
 import {
-    Headline, withTheme
+    Headline
 } from 'react-native-paper';
 import ContentPlaceholder from '../components/ContentPlaceholder'
 import FlatlistItem from '../components/FlatlistItem'
+import { NetworkContext } from '../components/NetworkController'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 const Home = ({ navigation }) => {
     const [posts, setPosts] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(true)
-  
+    const { isConnected } = useContext(NetworkContext)
     useEffect(() => {
         if (isFetching) {
             fetchLastestPost();
@@ -27,7 +29,11 @@ const Home = ({ navigation }) => {
             fetchLastestPost();
         }
     }, [page]);
-
+    useEffect(() => {
+        if (isConnected) {
+            fetchLastestPost();
+        }
+    }, [isConnected]);
     function onRefresh() {
         setIsFetching(true);
     }
@@ -73,7 +79,20 @@ const Home = ({ navigation }) => {
                 <ContentPlaceholder />
             </View>
         )
+    } else if (!isConnected) {
+        return (
+            <View style={{ alignSelf: 'center', alignItems: 'center' }}>
+                <MaterialCommunityIcons
+                    name={'wifi-off'}
+                    size={150}
+                    color={'black'}
+                />
+                <Title style={{ textAlign: 'center' }} >Your are offline App will automatically reload when your back to online</Title>
+
+            </View>
+        )
     } else {
+
         return (
             <View>
                 <Headline style={{ marginLeft: 23 }}>Lastest Post</Headline>
