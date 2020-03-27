@@ -1078,6 +1078,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-5.6.2.tgz#a054db83a1787711f9f69029e2c9b80735ac3f75"
   integrity sha512-IkzS78nOiPNM/MboBqqbk2eMBrflp8VML/p33pd50KZq+PvBq8Oywt1JKOgdaMxUIbGjP73zVz+f6r2f80u2Eg==
 
+"@react-native-firebase/admob@^6.3.4":
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/admob/-/admob-6.3.4.tgz#554dfcb6f332234ab21bb2b9d83df14e3c7519dc"
+  integrity sha512-CWTlQ/8w3CpLujB+krbZZXYue4Qrg+tIQKFRzBHKj2uEiyU+NYIWZa5GK+JruDeI0WicvBG2FB0yNijiQc2x8Q==
+
 "@react-native-firebase/app-types@6.3.4":
   version "6.3.4"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.3.4.tgz#e54a3de33455417db63a7b1de2b7795af1c25cae"
@@ -2578,6 +2583,11 @@ domutils@^2.0.0:
     dom-serializer "^0.2.1"
     domelementtype "^2.0.1"
     domhandler "^3.0.0"
+
+dooboolab-welcome@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/dooboolab-welcome/-/dooboolab-welcome-1.1.1.tgz#ca2184f6e1f568865d707a6ce3bda7e003550f54"
+  integrity sha512-tQ/9NBCGnalHwKOBjDqTD4t4wQpDfSSbxQGctzkzaLHR3AhN0wCBkIs05JciVtvl/jfLZ+DgAndktAMk3Bu7Vw==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
@@ -6101,6 +6111,13 @@ react-native-htmlview@^0.15.0:
   dependencies:
     entities "^1.1.1"
     htmlparser2-without-node-native "^3.9.2"
+
+react-native-iap@^4.4.3:
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/react-native-iap/-/react-native-iap-4.4.3.tgz#16c174b569caf3e401a4c756de249ef64dada7a9"
+  integrity sha512-vywdYj61i/F3Qw+o1U130ap77AYYkyFX3ioDnl5UzOd3xmoo2/uH36FPdlKrFZUmdYdMySoV+AYJDLh5T5ihWw==
+  dependencies:
+    dooboolab-welcome "^1.1.1"
 
 react-native-image-placeholder@^1.0.14:
   version "1.0.14"

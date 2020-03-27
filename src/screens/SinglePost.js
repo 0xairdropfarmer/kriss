@@ -8,6 +8,7 @@ import {
     Paragraph,
     List, Button
 } from 'react-native-paper';
+import { AdmobContext } from '../components/AdmobController'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HTML from 'react-native-render-html';
 import ImageLoad from 'react-native-image-placeholder';
@@ -25,8 +26,12 @@ const SinglePost = ({ route, theme }) => {
     const [isLoading, setisLoading] = useState(true);
     const [post, setpost] = useState([]);
     const [bookmark, setbookmark] = useState(false);
+
+    let { renderBanner, initRewardAds, point, setPoint } = useContext(AdmobContext)
+
     useEffect(() => {
         fetchPost()
+        fetchPoint()
     }, []);
     const fetchPost = async () => {
         let post_id = route.params.post_id;
@@ -37,6 +42,48 @@ const SinglePost = ({ route, theme }) => {
         setpost(post);
         setisLoading(false);
         renderBookMark(post_id);
+
+    }
+    async function fetchPoint() {
+        await AsyncStorage.getItem('yourcanreadfreepost').then(async (res) => {
+            let remain_point = JSON.parse(res)
+            let currpoint = remain_point <= 0 ? 0 : remain_point - 1
+            await AsyncStorage.setItem('yourcanreadfreepost', JSON.stringify(currpoint));
+            setPoint(currpoint)
+        });
+    }
+    const renderRewardAdsButton = () => {
+        return (
+            <View>
+                <Title style={{ textAlign: 'center' }}>For continue read more 10 post for free Watch this Ads by clicking button below</Title>
+                <Button icon="bullhorn" color={'#53ccf9'} mode="contained" onPress={() => initRewardAds()} >
+                    Watch Ads Video
+                 </Button>
+            </View>
+        )
+    }
+    const renderContent = () => {
+
+        if (point <= 0) {
+            return renderRewardAdsButton();
+        }
+        return (
+            <Card.Content>
+                <HTML
+                    key={theme.dark}
+                    html={post[0].content.rendered}
+                    imagesMaxWidth={Dimensions.get('window').width}
+                    tagsStyles={{
+                        p: { color: theme.colors.text },
+                        pre: { color: theme.colors.accent },
+                        h1: { color: theme.colors.text },
+                        h2: { color: theme.colors.text },
+                        h3: { color: theme.colors.text },
+                        li: { color: theme.colors.text },
+                    }}
+
+                />
+            </Card.Content>)
     }
     const onShare = async (title, uri) => {
         Share.share({
@@ -147,27 +194,16 @@ const SinglePost = ({ route, theme }) => {
                         />
                         <Paragraph />
                     </Card.Content>
+
+
                     <ImageLoad
                         style={{ width: '100%', height: 250 }}
                         loadingStyle={{ size: 'large', color: 'grey' }}
                         source={{ uri: post[0].jetpack_featured_media_url }}
                     />
-                    <Card.Content>
-                        <HTML
-                            key={theme.dark}
-                            html={post[0].content.rendered}
-                            imagesMaxWidth={Dimensions.get('window').width}
-                            tagsStyles={{
-                                p: { color: theme.colors.text },
-                                pre: { color: theme.colors.accent },
-                                h1: { color: theme.colors.text },
-                                h2: { color: theme.colors.text },
-                                h3: { color: theme.colors.text },
-                                li: { color: theme.colors.text },
-                            }}
+                    {renderBanner()}
+                    {renderContent()}
 
-                        />
-                    </Card.Content>
                 </Card>
             </ScrollView>
         );

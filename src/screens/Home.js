@@ -4,6 +4,7 @@ import { View, FlatList, ActivityIndicator } from 'react-native'
 import {
     Headline
 } from 'react-native-paper';
+import { AdmobContext } from '../components/AdmobController'
 import ContentPlaceholder from '../components/ContentPlaceholder'
 import FlatlistItem from '../components/FlatlistItem'
 import { NetworkContext } from '../components/NetworkController'
@@ -14,6 +15,7 @@ const Home = ({ navigation }) => {
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(true)
     const { isConnected } = useContext(NetworkContext)
+    let { renderBanner } = useContext(AdmobContext)
     useEffect(() => {
         if (isFetching) {
             fetchLastestPost();
@@ -103,9 +105,13 @@ const Home = ({ navigation }) => {
                     onEndReached={() => handleLoadMore()}
                     onEndReachedThreshold={0.1}
                     ListFooterComponent={() => renderFooter()}
-                    renderItem={({ item }) => (
-                        <FlatlistItem item={item} navigation={navigation} />
+                    renderItem={({ item, index }) => (
+                        <React.Fragment>
+                            <FlatlistItem item={item} navigation={navigation} />
+                            {index % 3 == 0 ? renderBanner() : <React.Fragment />}
+                        </React.Fragment>
                     )}
+
                     keyExtractor={(item, index) => index.toString()}
                 />
 
