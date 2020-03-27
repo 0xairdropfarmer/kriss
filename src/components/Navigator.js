@@ -52,7 +52,7 @@ function CategorieStack({ navigation }) {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Categorie" component={CategorieScreen} />
-            <Stack.Screen name="CategorieList" component={CategorieList} />
+            <Stack.Screen name="CategorieList" component={CategorieList}  />
             <Stack.Screen name="SinglePost" component={SinglePost} />
         </Stack.Navigator>
     );
