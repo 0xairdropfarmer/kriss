@@ -11,6 +11,7 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HTML from 'react-native-render-html';
 import ImageLoad from 'react-native-image-placeholder';
+import AsyncStorage from '@react-native-community/async-storage';
 import {
     Share,
     ScrollView,
@@ -23,6 +24,7 @@ import moment from 'moment';
 const SinglePost = ({ route }) => {
     const [isLoading, setisLoading] = useState(true);
     const [post, setpost] = useState([]);
+    const [bookmark, setbookmark] = useState(false);
     useEffect(() => {
         fetchPost()
     }, []);
@@ -34,12 +36,49 @@ const SinglePost = ({ route }) => {
         const post = await response.json();
         setpost(post);
         setisLoading(false);
-
+        renderBookMark(post_id);
     }
     const onShare = async (title, uri) => {
         Share.share({
             title: title,
             url: uri,
+        });
+    };
+    const saveBookMark = async post_id => {
+        setbookmark(true);
+        await AsyncStorage.getItem('bookmark').then(token => {
+            const res = JSON.parse(token);
+            if (res !== null) {
+                let data = res.find(value => value === post_id);
+                if (data == null) {
+                    res.push(post_id);
+                    AsyncStorage.setItem('bookmark', JSON.stringify(res));
+                    alert('Your bookmark post');
+                }
+            } else {
+                let bookmark = [];
+                bookmark.push(post_id);
+                AsyncStorage.setItem('bookmark', JSON.stringify(bookmark));
+                alert('Your bookmark post');
+            }
+        });
+    };
+    const removeBookMark = async post_id => {
+        setbookmark(false);
+        const bookmark = await AsyncStorage.getItem('bookmark').then(token => {
+            const res = JSON.parse(token);
+            return res.filter(e => e !== post_id);
+        });
+        await AsyncStorage.setItem('bookmark', JSON.stringify(bookmark));
+        alert('Your unbookmark post');
+    };
+    const renderBookMark = async post_id => {
+        await AsyncStorage.getItem('bookmark').then(token => {
+            const res = JSON.parse(token);
+            if (res != null) {
+                let data = res.find(value => value === post_id);
+                return data == null ? setbookmark(false) : setbookmark(true);
+            }
         });
     };
     if (isLoading) {
@@ -68,6 +107,25 @@ const SinglePost = ({ route }) => {
                                     />
                                 );
                             }}
+                            right={props => {
+                                if (bookmark == true) {
+                                    return (
+                                        <TouchableOpacity
+                                            onPress={() => removeBookMark(post[0].id)}>
+                                            <MaterialCommunityIcons name="bookmark" size={30} />
+                                        </TouchableOpacity>
+                                    );
+                                } else {
+                                    return (
+                                        <TouchableOpacity onPress={() => saveBookMark(post[0].id)}>
+                                            <MaterialCommunityIcons
+                                                name="bookmark-outline"
+                                                size={30}
+                                            />
+                                        </TouchableOpacity>
+                                    );
+                                }
+                            }}
                         />
                         <List.Item
                             title={`Published on ${moment(
@@ -84,7 +142,7 @@ const SinglePost = ({ route }) => {
                                     </TouchableOpacity>
                                 );
                             }}
- 
+
                         />
                         <Paragraph />
                     </Card.Content>
