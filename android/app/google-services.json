@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "441360005207",
+    "firebase_url": "https://kriss-f5aa6.firebaseio.com",
+    "project_id": "kriss-f5aa6",
+    "storage_bucket": "kriss-f5aa6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441360005207:android:0ce1c143b1bfd8da870b12",
+        "android_client_info": {
+          "package_name": "com.kriss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441360005207-iobnmfklb227s74gr76b535kb70tr4hh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSY7imKX2ul3PEWn7jnuXra82q0BOtaB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441360005207-iobnmfklb227s74gr76b535kb70tr4hh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "441360005207-8de4tsvp9nrivs0l1l7vs28860oscrvc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "me.kriss"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

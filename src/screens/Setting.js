@@ -1,12 +1,21 @@
-import React from 'react'
-import { View, Text } from 'react-native'
 
-const Setting = () => {
+import React, { useContext, useState } from 'react';
+import { View, TouchableOpacity } from 'react-native';
+import {
+    List, Switch,
+} from 'react-native-paper';
+const Setting = ({ navigation }) => {
     return (
-        <View>
-            <Text></Text>
-        </View>
-    )
-}
+        <View style={{ flex: 1 }}>
 
-export default Setting
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Feedback')}>
+                <List.Item
+                    title="Send Feedback"
+                    left={() => <List.Icon icon="email" />}
+                />
+            </TouchableOpacity>
+        </View >
+    );
+}
+export default Setting;
