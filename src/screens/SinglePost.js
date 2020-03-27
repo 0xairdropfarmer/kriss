@@ -21,7 +21,7 @@ import {
 } from 'react-native';
 import ContentPlaceholder from '../components/ContentPlaceholder';
 import moment from 'moment';
-const SinglePost = ({ route }) => {
+const SinglePost = ({ route, theme }) => {
     const [isLoading, setisLoading] = useState(true);
     const [post, setpost] = useState([]);
     const [bookmark, setbookmark] = useState(false);
@@ -112,7 +112,7 @@ const SinglePost = ({ route }) => {
                                     return (
                                         <TouchableOpacity
                                             onPress={() => removeBookMark(post[0].id)}>
-                                            <MaterialCommunityIcons name="bookmark" size={30} />
+                                            <MaterialCommunityIcons name="bookmark" size={30} color={theme.colors.text} />
                                         </TouchableOpacity>
                                     );
                                 } else {
@@ -121,6 +121,7 @@ const SinglePost = ({ route }) => {
                                             <MaterialCommunityIcons
                                                 name="bookmark-outline"
                                                 size={30}
+                                                color={theme.colors.text}
                                             />
                                         </TouchableOpacity>
                                     );
@@ -138,7 +139,7 @@ const SinglePost = ({ route }) => {
                                         onPress={() =>
                                             onShare(post[0].title.rendered, post[0].link)
                                         }>
-                                        <MaterialCommunityIcons name="share" size={30} />
+                                        <MaterialCommunityIcons name="share" size={30} color={theme.colors.text} />
                                     </TouchableOpacity>
                                 );
                             }}
@@ -153,8 +154,17 @@ const SinglePost = ({ route }) => {
                     />
                     <Card.Content>
                         <HTML
+                            key={theme.dark}
                             html={post[0].content.rendered}
                             imagesMaxWidth={Dimensions.get('window').width}
+                            tagsStyles={{
+                                p: { color: theme.colors.text },
+                                pre: { color: theme.colors.accent },
+                                h1: { color: theme.colors.text },
+                                h2: { color: theme.colors.text },
+                                h3: { color: theme.colors.text },
+                                li: { color: theme.colors.text },
+                            }}
 
                         />
                     </Card.Content>
@@ -163,4 +173,4 @@ const SinglePost = ({ route }) => {
         );
     }
 }
-export default SinglePost
+export default withTheme(SinglePost)

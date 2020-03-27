@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, FlatList, ActivityIndicator } from 'react-native'
 import {
-    Headline,
+    Headline, withTheme
 } from 'react-native-paper';
 import ContentPlaceholder from '../components/ContentPlaceholder'
 import FlatlistItem from '../components/FlatlistItem'
@@ -11,6 +11,12 @@ const Home = ({ navigation }) => {
     const [isFetching, setIsFetching] = useState(false);
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(true)
+  
+    useEffect(() => {
+        if (isFetching) {
+            fetchLastestPost();
+        }
+    }, [isFetching]);
     useEffect(() => {
         if (isFetching) {
             fetchLastestPost();

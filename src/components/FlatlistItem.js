@@ -6,10 +6,10 @@ import moment from 'moment';
 import {
     Card,
     Title,
-    Paragraph
+    Paragraph, withTheme,
 } from 'react-native-paper';
 
-const FlatlistItem = ({ item, navigation }) => {
+const FlatlistItem = ({ item, navigation, theme }) => {
     return (
 
         <TouchableOpacity
@@ -39,7 +39,11 @@ const FlatlistItem = ({ item, navigation }) => {
                 <Card.Content>
                     <Card.Content>
                         <HTMLRender
+                            key={theme.dark}
                             html={item.excerpt.rendered}
+                            tagsStyles={{
+                                p: { color: theme.colors.text },
+                            }}
                         />
                     </Card.Content>
                 </Card.Content>
@@ -47,4 +51,4 @@ const FlatlistItem = ({ item, navigation }) => {
         </TouchableOpacity>
     );
 };
-export default FlatlistItem
+export default withTheme(FlatlistItem);
