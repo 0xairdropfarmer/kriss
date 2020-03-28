@@ -16,6 +16,13 @@ const Setting = ({ navigation }) => {
                 left={() => <List.Icon icon="brightness-4" />}
                 right={() => <Switch value={theme} onValueChange={toggleTheme} />}
             />
+            <TouchableOpacity
+                onPress={() => navigation.navigate('RemoveAds')}>
+                <List.Item
+                    title="Remove Ads"
+                    left={() => <List.Icon icon="bullhorn" />}
+                />
+            </TouchableOpacity>
 
             <TouchableOpacity
                 onPress={() => navigation.navigate('Feedback')}>

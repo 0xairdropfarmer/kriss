@@ -8,6 +8,7 @@ import {
     Paragraph,
     List, Button
 } from 'react-native-paper';
+import { IApContext } from '../components/IApController'
 import { AdmobContext } from '../components/AdmobController'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HTML from 'react-native-render-html';
@@ -26,7 +27,7 @@ const SinglePost = ({ route, theme }) => {
     const [isLoading, setisLoading] = useState(true);
     const [post, setpost] = useState([]);
     const [bookmark, setbookmark] = useState(false);
-
+    const { showads } = useContext(IApContext)
     let { renderBanner, initRewardAds, point, setPoint } = useContext(AdmobContext)
 
     useEffect(() => {
@@ -64,7 +65,7 @@ const SinglePost = ({ route, theme }) => {
     }
     const renderContent = () => {
 
-        if (point <= 0) {
+        if (showads && point <= 0) {
             return renderRewardAdsButton();
         }
         return (
@@ -201,7 +202,7 @@ const SinglePost = ({ route, theme }) => {
                         loadingStyle={{ size: 'large', color: 'grey' }}
                         source={{ uri: post[0].jetpack_featured_media_url }}
                     />
-                    {renderBanner()}
+                    {showads && renderBanner()}
                     {renderContent()}
 
                 </Card>

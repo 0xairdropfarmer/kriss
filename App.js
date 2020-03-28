@@ -4,6 +4,7 @@ import SplashScreen from 'react-native-splash-screen'
 import { ThemeController } from './src/components/ThemeController';
 import { NetworkController } from './src/components/NetworkController';
 import { AdmobController } from './src/components/AdmobController';
+import { IApController } from './src/components/IApController'
 import AsyncStorage from '@react-native-community/async-storage';
 export default function App() {
   React.useEffect(() => {
@@ -17,12 +18,14 @@ export default function App() {
     }
   }
   return (
-    <AdmobController>
-      <NetworkController>
-        <ThemeController>
-          <Navigators />
-        </ThemeController>
-      </NetworkController>
-    </AdmobController>
+    <IApController>
+      <AdmobController>
+        <NetworkController>
+          <ThemeController>
+            <Navigators />
+          </ThemeController>
+        </NetworkController>
+      </AdmobController>
+    </IApController>
   )
 }

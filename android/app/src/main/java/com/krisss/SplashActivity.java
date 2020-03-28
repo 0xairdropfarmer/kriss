@@ -1,4 +1,4 @@
-  package com.kriss;
+  package com.krisss;
   import android.content.Intent;
   import android.os.Bundle;
   import androidx.appcompat.app.AppCompatActivity;

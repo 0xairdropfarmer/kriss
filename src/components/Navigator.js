@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { ThemeContext } from './ThemeController'
 import {
     NavigationContainer,
@@ -20,7 +20,8 @@ import BookMarkScreen from '../screens/Bookmark';
 import SinglePost from '../screens/SinglePost';
 import CategorieList from '../screens/CategorieList';
 import Feedback from '../screens/Feedback';
-
+import RemoveAds from '../screens/RemoveAds';
+import { IApContext } from './IApController'
 
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -55,6 +56,8 @@ function SettingStack() {
         <Stack.Navigator>
             <Stack.Screen name="Setting" component={SettingScreen} />
             <Stack.Screen name="Feedback" component={Feedback} />
+            <Stack.Screen name="RemoveAds" component={RemoveAds} />
+
         </Stack.Navigator>
     );
 }
@@ -71,11 +74,16 @@ export default Navigator = () => {
     const { theme } = useContext(ThemeContext)
     let paper_theme = theme ? PaperDarkTheme : PaperDefaultTheme;
     let nav_theme = theme ? DarkTheme : DefaultTheme;
- 
+    const { initIAp, checkValidPurchase } = useContext(IApContext)
+    useEffect(() => {
+        initIAp()
+        checkValidPurchase()
+    }, [])
+
     const Tab = createBottomTabNavigator();
     return (
         <PaperProvider theme={paper_theme}>
-           <NavigationContainer theme={nav_theme}>
+            <NavigationContainer theme={nav_theme}>
 
 
                 <Tab.Navigator screenOptions={({ route }) => ({

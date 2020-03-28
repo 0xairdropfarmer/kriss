@@ -4,6 +4,7 @@ import { View, FlatList, ActivityIndicator } from 'react-native'
 import {
     Headline
 } from 'react-native-paper';
+import { IApContext } from '../components/IApController'
 import { AdmobContext } from '../components/AdmobController'
 import ContentPlaceholder from '../components/ContentPlaceholder'
 import FlatlistItem from '../components/FlatlistItem'
@@ -16,6 +17,7 @@ const Home = ({ navigation }) => {
     const [isLoading, setIsLoading] = useState(true)
     const { isConnected } = useContext(NetworkContext)
     let { renderBanner } = useContext(AdmobContext)
+    let { showads } = useContext(IApContext)
     useEffect(() => {
         if (isFetching) {
             fetchLastestPost();
@@ -98,6 +100,7 @@ const Home = ({ navigation }) => {
         return (
             <View>
                 <Headline style={{ marginLeft: 23 }}>Lastest Post</Headline>
+                {showads && renderBanner()}
                 <FlatList
                     data={posts}
                     onRefresh={() => onRefresh()}
@@ -107,8 +110,9 @@ const Home = ({ navigation }) => {
                     ListFooterComponent={() => renderFooter()}
                     renderItem={({ item, index }) => (
                         <React.Fragment>
+
                             <FlatlistItem item={item} navigation={navigation} />
-                            {index % 3 == 0 ? renderBanner() : <React.Fragment />}
+
                         </React.Fragment>
                     )}
 
