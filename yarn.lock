@@ -3811,7 +3811,7 @@ inquirer@^7.0.0:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
-invariant@2.2.4, invariant@^2.2.4:
+invariant@2.2.4, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -6138,6 +6138,13 @@ react-native-keyboard-aware-scroll-view@^0.9.1:
   dependencies:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
+
+react-native-onesignal@^3.6.5:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.6.5.tgz#3ee74e1713b71a14361f425b218d1059ef904b11"
+  integrity sha512-xeXQsYOwU9JUtsLJlRmRN86Gi6c2h9cbR1pHQmbb2Sui/t6Myw3cym/bij3X/0PJV4m4ehMnqtI12Lthq8WFkw==
+  dependencies:
+    invariant "^2.2.2"
 
 react-native-paper@^3.6.0:
   version "3.6.0"

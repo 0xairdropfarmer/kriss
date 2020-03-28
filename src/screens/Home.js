@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, FlatList, ActivityIndicator } from 'react-native'
 import {
-    Headline
+    Headline, Title
 } from 'react-native-paper';
 import { IApContext } from '../components/IApController'
 import { AdmobContext } from '../components/AdmobController'
@@ -36,6 +36,8 @@ const Home = ({ navigation }) => {
     useEffect(() => {
         if (isConnected) {
             fetchLastestPost();
+        } else {
+            setIsLoading(false)
         }
     }, [isConnected]);
     function onRefresh() {

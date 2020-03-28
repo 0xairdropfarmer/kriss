@@ -29,6 +29,7 @@
     "react-native-iap": "^4.4.3",
     "react-native-image-placeholder": "^1.0.14",
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
+    "react-native-onesignal": "^3.6.5",
     "react-native-paper": "^3.6.0",
     "react-native-reanimated": "^1.7.1",
     "react-native-render-html": "^4.2.0",

@@ -58,6 +58,7 @@
 		15A75D4E59E90CB2BB89E825 /* Pods-kriss-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kriss-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-kriss-tvOSTests/Pods-kriss-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2108C77E242DE56800273843 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		217204FC242E7917003F4F60 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		217204FE242FA01C003F4F60 /* kriss.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = kriss.entitlements; path = kriss/kriss.entitlements; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* kriss-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kriss-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* kriss-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kriss-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		71766E8B696ACA1445D8C4C6 /* libPods-kriss-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kriss-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +131,7 @@
 		13B07FAE1A68108700A75B9A /* kriss */ = {
 			isa = PBXGroup;
 			children = (
+				217204FE242FA01C003F4F60 /* kriss.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -702,6 +704,7 @@
 			baseConfigurationReference = 04ED44C29D06E8F5676CBD93 /* Pods-kriss.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = kriss/kriss.entitlements;
 				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 4NXPVU3CJ5;
@@ -724,6 +727,7 @@
 			baseConfigurationReference = 7536498F23EF1B4FD7226BB4 /* Pods-kriss.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = kriss/kriss.entitlements;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 4NXPVU3CJ5;
 				INFOPLIST_FILE = kriss/Info.plist;
