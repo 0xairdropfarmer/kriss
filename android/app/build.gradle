@@ -128,11 +128,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.krisss"
+        applicationId "com.kriss"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 6
+        versionName "1.1"
         multiDexEnabled true
 
     }
@@ -152,9 +152,9 @@ android {
             keyPassword 'android'
         }
          release {
-           storeFile file('myupload.keystore')
+           storeFile file('keystore.jks')
            storePassword '111111'
-           keyAlias 'mykeyalias'
+           keyAlias 'upload'
            keyPassword '111111'
        }
 

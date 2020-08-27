@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.krisss">
+  package="com.kriss">
 
     <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="com.android.vending.BILLING" />
@@ -28,7 +28,8 @@
         android:windowSoftInputMode="adjustResize">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
         </intent-filter>
       </activity>
     

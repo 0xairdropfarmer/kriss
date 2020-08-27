@@ -1,5 +1,5 @@
   
-package com.krisss;
+package com.kriss;
 
 import com.facebook.react.ReactActivity;
 import android.os.Bundle;

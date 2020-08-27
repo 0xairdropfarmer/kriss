@@ -1,4 +1,4 @@
-import React, { createContext,useState } from 'react';
+import React, { createContext, useState } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { BannerAd, BannerAdSize, TestIds, RewardedAd, RewardedAdEventType } from '@react-native-firebase/admob';
 const banner_id =
@@ -13,7 +13,7 @@ export const AdmobContext = createContext();
 export const AdmobController = ({ children }) => {
     const [point, setPoint] = useState()
     const initRewardAds = () => {
-        const rewarded = RewardedAd.createForAdRequest(TestIds.REWARDED, {
+        const rewarded = RewardedAd.createForAdRequest(reward_id, {
             requestNonPersonalizedAdsOnly: true,
         });
         rewarded.onAdEvent(async (type, error, reward) => {
@@ -35,7 +35,7 @@ export const AdmobController = ({ children }) => {
     const renderBanner = () => {
         return (
             <BannerAd style={{ alignItems: 'center', justifyContent: 'center', alignSelf: 'center' }}
-                unitId={TestIds.BANNER}
+                unitId={banner_id}
                 size={BannerAdSize.SMART_BANNER}
                 onAdLoaded={() => {
                     console.log('Advert loaded');

@@ -44,8 +44,10 @@ const RemoveAds = ({ theme }) => {
                     <Button icon="cart" mode="contained" onPress={() => makePurchase(products.products[0].productId)}>
                         {products.products[0].localizedPrice} one time
                 </Button>
-                    <Button icon="cart" mode="contained" onPress={() => makePurchase(products.products[0].productId)}>
-                        {products.products[0].localizedPrice} one time
+                    <Title>Pay Monthly</Title>
+                    <Paragraph>pay monthly for remove ads</Paragraph>
+                    <Button icon="cart" mode="contained" onPress={() => makeSubscription(products.products[1].productId)}>
+                        {products.products[1].localizedPrice} every month
                 </Button>
 
 
