@@ -1,6 +1,6 @@
-# Demo for The Practical React Native Ebook
+# Demo for Real World React Native Ebook
 
-this private repo for The Practical React Native Buyer.
+this private repo for Real World React Native Ebook.
 
 ## Installation
 
