@@ -13,7 +13,16 @@ const itemSkus = Platform.select({
         'com.kriss.remove_ad_forever'
     ]
 });
-
+const TestitemSkus = Platform.select({
+    ios: [
+        'kriss.once.removeads',
+        'kriss.sub.removeads'
+    ],
+    android: [
+        'com.kriss.remove_ads_monthly',
+        'com.kriss.remove_ad_forever'
+    ]
+});
 export const IApController = ({ children }) => {
     const [products, setProducts] = useState([])
     const [showads, setShowads] = useState(true);
@@ -22,7 +31,7 @@ export const IApController = ({ children }) => {
             const products = await RNIap.getProducts(itemSkus);
             if (Platform.OS === 'android') {
                 const subscription = await RNIap.getSubscriptions(itemSkus);
-                products.push(subscription)
+                products.push(subscription[0])
             }
             console.log(products)
             setProducts({ products });
