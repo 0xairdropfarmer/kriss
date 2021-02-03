@@ -5,6 +5,7 @@ import { Headline, Text } from 'react-native-paper';
 import ContentPlaceholder from '../components/ContentPlaceholder';
 import AsyncStorage from '@react-native-community/async-storage';
 import { useIsFocused } from '@react-navigation/native';
+import Config from "react-native-config";
 const Bookmark = ({ navigation }) => {
     const [bookmarkpost, setbookmarkpost] = useState([]);
     const [isloading, setisloading] = useState(true);
@@ -25,7 +26,7 @@ const Bookmark = ({ navigation }) => {
                 });
                 let query_string = result.join('&');
                 const response = await fetch(
-                    `https://kriss.io/wp-json/wp/v2/posts?${query_string}`,
+                    `${Config.API_URL}/wp-json/wp/v2/posts?${query_string}`,
                 );
                 const post = await response.json();
                 setbookmarkpost(post);

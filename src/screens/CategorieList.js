@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { FlatList, View, ActivityIndicator } from 'react-native';
+import Config from "react-native-config";
 import ContentPlaceholder from '../components/ContentPlaceholder';
 import FlatlistItem from '../components/FlatlistItem';
 const CategorieList = ({ navigation, route }) => {
@@ -23,7 +24,7 @@ const CategorieList = ({ navigation, route }) => {
     const fetchLastestPost = async () => {
         let categorie_id = route.params.categorie_id;
         const response = await fetch(
-            `https://kriss.io/wp-json/wp/v2/posts?categories=${categorie_id}&per_page=5&page=${page}`,
+            `${Config.API_URL}/wp-json/wp/v2/posts?categories=${categorie_id}&per_page=5&page=${page}`,
         );
         const post = await response.json();
         if (page == 1) {

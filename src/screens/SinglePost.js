@@ -23,6 +23,7 @@ import {
 } from 'react-native';
 import ContentPlaceholder from '../components/ContentPlaceholder';
 import moment from 'moment';
+import Config from "react-native-config";
 const SinglePost = ({ route, theme }) => {
     const [isLoading, setisLoading] = useState(true);
     const [post, setpost] = useState([]);
@@ -37,7 +38,7 @@ const SinglePost = ({ route, theme }) => {
     const fetchPost = async () => {
         let post_id = route.params.post_id;
         const response = await fetch(
-            `https://kriss.io/wp-json/wp/v2/posts?_embed&include=${post_id}`,
+            `${Config.API_URL}/wp-json/wp/v2/posts?_embed&include=${post_id}`,
         );
         const post = await response.json();
         setpost(post);

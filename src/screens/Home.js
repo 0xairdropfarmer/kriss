@@ -4,6 +4,7 @@ import { View, FlatList, ActivityIndicator } from 'react-native'
 import {
     Headline, Title
 } from 'react-native-paper';
+import Config from "react-native-config";
 import { IApContext } from '../components/IApController'
 import { AdmobContext } from '../components/AdmobController'
 import ContentPlaceholder from '../components/ContentPlaceholder'
@@ -48,8 +49,9 @@ const Home = ({ navigation }) => {
     }
 
     const fetchLastestPost = async () => {
+        console.log(Config.API_URL)
         const response = await fetch(
-            `https://kriss.io/wp-json/wp/v2/posts?per_page=5&page=${page}`,
+            `${Config.API_URL}/wp-json/wp/v2/posts?per_page=5&page=${page}`,
         );
         const post = await response.json();
         if (page == 1) {

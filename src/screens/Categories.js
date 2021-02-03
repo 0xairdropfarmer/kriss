@@ -3,12 +3,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import { FlatList, ScrollView, View, TouchableOpacity } from 'react-native';
 import ContentPlaceholder from '../components/ContentPlaceholder';
 import { Card, Title } from 'react-native-paper'
+import Config from "react-native-config";
 const Categories = ({ navigation }) => {
     const [isloading, setisloading] = useState(true);
     const [categories, setCategories] = useState([]);
     const fetchCategorie = async () => {
         setisloading(true);
-        const response = await fetch(`https://kriss.io/wp-json/wp/v2/categories`);
+        const response = await fetch(`${Config.API_URL}/wp-json/wp/v2/categories`);
         const categories = await response.json();
         setCategories(categories);
         setisloading(false);

@@ -22,7 +22,7 @@ export const IApController = ({ children }) => {
             const products = await RNIap.getProducts(itemSkus);
             if (Platform.OS === 'android') {
                 const subscription = await RNIap.getSubscriptions(itemSkus);
-                products.push(subscription[0])
+                products.push(subscription)
             }
             console.log(products)
             setProducts({ products });
