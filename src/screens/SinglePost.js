@@ -34,12 +34,14 @@ const SinglePost = ({route, theme}) => {
     makeSubscription,
     getPurchases,
     showads,
+    pointfromiap
   } = useContext(IApContext);
-  let {renderBanner, initRewardAds, point, setPoint} = useContext(AdmobContext);
+  let {renderBanner, initRewardAds, point, setPoint,} = useContext(AdmobContext);
 
   useEffect(() => {
     fetchPost();
     fetchPoint();
+    console.log(products);
   }, []);
   const fetchPost = async () => {
     let post_id = route.params.post_id;
@@ -66,14 +68,14 @@ const SinglePost = ({route, theme}) => {
     return (
       <View>
         <Title style={{textAlign: 'center'}}>
-          Pay {products.products[2].localizedPrice} for read more 10 post
+          Pay {products.products[1].localizedPrice} for read more 10 post
         </Title>
         <Button
           icon="bullhorn"
           color={'#53ccf9'}
           mode="contained"
-          onPress={() => initRewardAds()}>
-          Watch Ads Video
+          onPress={() => makePurchase(products.products[1].productId)}>
+          Pay now
         </Button>
       </View>
     );

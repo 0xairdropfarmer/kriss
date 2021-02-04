@@ -69,7 +69,7 @@ export default (Navigator = () => {
   useEffect(() => {
     initIAp();
     checkValidPurchase();
-    console.log(products);
+   
   }, []);
 
   const Tab = createBottomTabNavigator();
