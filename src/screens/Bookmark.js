@@ -15,12 +15,12 @@ const Bookmark = ({navigation}) => {
     fetchBookMark();
   }, [isFocused]);
   const fetchBookMark = async () => {
-    await AsyncStorage.getItem('bookmark').then(async (token) => {
+    await AsyncStorage.getItem('bookmark').then(async token => {
       res = JSON.parse(token);
       setisloading(true);
       if (res) {
         console.log('arr', res);
-        const result = res.map((post_id) => {
+        const result = res.map(post_id => {
           return 'include[]=' + post_id;
         });
         let query_string = result.join('&');

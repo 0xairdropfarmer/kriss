@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useEffect, useState, useContext} from 'react';
 import {FlatList, View, ActivityIndicator} from 'react-native';
 import ContentPlaceholder from '../components/ContentPlaceholder';
@@ -14,6 +15,51 @@ const CategorieList = ({navigation, route}) => {
   useEffect(() => {
     if (isFetching) {
       fetchLastestPost();
+=======
+import React, { useEffect, useState, useContext } from 'react';
+import { FlatList, View, ActivityIndicator } from 'react-native';
+import Config from "react-native-config";
+import ContentPlaceholder from '../components/ContentPlaceholder';
+import FlatlistItem from '../components/FlatlistItem';
+const CategorieList = ({ navigation, route }) => {
+    const [posts, setPosts] = useState([]);
+    const [isloading, setIsLoading] = useState(true);
+    const [isFetching, setIsFetching] = useState(false);
+    const [page, setPage] = useState(1);
+    useEffect(() => {
+        fetchLastestPost();
+    }, []);
+    useEffect(() => {
+        if (isFetching) {
+            fetchLastestPost();
+        }
+    }, [isFetching]);
+    useEffect(() => {
+        if (page > 1) {
+            fetchLastestPost();
+        }
+    }, [page]);
+    const fetchLastestPost = async () => {
+        let categorie_id = route.params.categorie_id;
+        const response = await fetch(
+            `${Config.API_URL}/wp-json/wp/v2/posts?categories=${categorie_id}&per_page=5&page=${page}`,
+        );
+        const post = await response.json();
+        if (page == 1) {
+            setPosts(post);
+        } else {
+            setPosts([...posts, ...post]);
+        }
+        setIsLoading(false);
+        setIsFetching(false);
+    };
+
+    function onRefresh() {
+        setIsFetching(true);
+    }
+    function handleLoadMore() {
+        setPage(page => page + 1);
+>>>>>>> d1c16e9ff6501780d4c1c5c9e2be522e68f38d8e
     }
   }, [isFetching]);
   useEffect(() => {
